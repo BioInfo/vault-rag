@@ -157,3 +157,6 @@ embeddings/
 vaults/
 obsidian/
 notes/
+
+# Memory bank (contains session-specific context)
+memory-bank/
