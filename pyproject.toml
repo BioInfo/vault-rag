@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vault-rag"
+version = "0.0.0"
+description = "Vault RAG - local-first knowledge intelligence"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["server*", "scripts*"]
+exclude = ["tests*", "docs*", "memory-bank*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 88
+src = ["server", "scripts", "tests"]
+extend-exclude = [".venv", "vault-rag-env", "__pycache__"]
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "I"]  # pyflakes, pycodestyle, flake8-bugbear, isort
+
+[tool.ruff.lint.isort]
+known-first-party = ["server"]
+combine-as-imports = true
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+strict_equality = true
+# Pragmatic defaults to work with third-party libs
+ignore_missing_imports = true
+namespace_packages = true
+explicit_package_bases = true
+exclude = [
+    "vault-rag-env/",
+    ".venv/",
+    "tests/test_mcp_.*\\.py",
+    "scripts/",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q --cov=server --cov-report=term-missing --cov-fail-under=30"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+branch = true
+source = ["server"]
+omit = ["scripts/*"]
+
+[tool.coverage.report]
+fail_under = 30
+show_missing = true
+skip_covered = true
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+  "raise NotImplementedError",
+]

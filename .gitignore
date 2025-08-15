@@ -126,6 +126,12 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Ruff
+.ruff_cache/
+
+# Pre-commit
+.pre-commit-config.yaml.backup
+
 # Storage directories (contain personal vault data)
 storage/
 data/

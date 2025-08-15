@@ -1,3 +1,21 @@
+# Pre-Roadmap: MCP Enablement
+
+The following tasks are prerequisites and will be completed before the existing roadmap work. These do not change, reorder, or remove any existing roadmap items.
+
+- Add fastapi_mcp sidecar enablement (Model Context Protocol)
+  - Curate an allowlist of API endpoints to expose as MCP tools
+  - Document sidecar usage and security boundaries in [docs/MCP.md](docs/MCP.md)
+- Add CI quality gates and pre-commit
+  - Ruff (lint), Black (format), isort (imports), mypy (types), pytest + coverage (≥ 90%)
+  - GitHub Actions workflow at .github/workflows/ci.yml
+- Add testing and contract checks
+  - Unit/integration tests for basic endpoints (e.g., [GET /health](../server/main.py))
+  - Contract tests to validate MCP tool schemas against FastAPI OpenAPI
+- Configuration centralization
+  - Add tool configuration in pyproject.toml (ruff/black/isort/mypy/pytest/coverage)
+  - Keep production dependencies in requirements.txt (no change to app logic)
+
+---
 # Vault RAG Roadmap: From Starter to Supercharged
 
 Purpose: Define a clear, staged plan to evolve Vault RAG into a best-in-class, privacy-first personal knowledge intelligence platform with richer context, smarter chunking, and deeper insights.
